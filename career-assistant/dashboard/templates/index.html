@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Assistant - Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>🚀 Career Assistant</h1>
+                <p>Dashboard</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-view="overview">
+                    <span class="icon">📊</span>
+                    <span>Overview</span>
+                </a>
+                <a href="#" class="nav-item" data-view="profiles">
+                    <span class="icon">👥</span>
+                    <span>My Profiles</span>
+                </a>
+                <a href="#" class="nav-item" data-view="progress">
+                    <span class="icon">📈</span>
+                    <span>Progress</span>
+                </a>
+                <a href="#" class="nav-item" data-view="analytics">
+                    <span class="icon">📉</span>
+                    <span>Analytics</span>
+                </a>
+                <a href="#" class="nav-item" data-view="settings">
+                    <span class="icon">⚙️</span>
+                    <span>Settings</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Career Assistant v1.0</p>
+                <p class="text-muted">AI-Powered Career Guidance</p>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-bar">
+                <div class="header-left">
+                    <button class="menu-toggle" id="menu-toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <h2 id="page-title">Overview</h2>
+                </div>
+                <div class="header-right">
+                    <button class="btn btn-primary" id="sync-btn">
+                        <span>↻</span> Sync
+                    </button>
+                    <div class="user-menu">
+                        <img src="https://via.placeholder.com/40" alt="User" class="user-avatar">
+                    </div>
+                </div>
+            </header>
+            
+            <!-- View Container -->
+            <div class="view-container">
+                <!-- Overview View -->
+                <section id="overview-view" class="view active">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">👥</div>
+                            <div class="stat-content">
+                                <h3>Total Profiles</h3>
+                                <p class="stat-value" id="total-profiles">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">✅</div>
+                            <div class="stat-content">
+                                <h3>Completed Activities</h3>
+                                <p class="stat-value" id="total-completed">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">📈</div>
+                            <div class="stat-content">
+                                <h3>Total Activities</h3>
+                                <p class="stat-value" id="total-activities">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">🎯</div>
+                            <div class="stat-content">
+                                <h3>Completion Rate</h3>
+                                <p class="stat-value" id="completion-rate">0%</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="charts-grid">
+                        <div class="chart-card">
+                            <h3>Profile Distribution</h3>
+                            <canvas id="profileChart"></canvas>
+                        </div>
+                        <div class="chart-card">
+                            <h3>Activity Timeline</h3>
+                            <canvas id="activityChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="recent-section">
+                        <h3>Recent Profiles</h3>
+                        <div id="recent-profiles" class="profile-list">
+                            <!-- Populated by JavaScript -->
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Profiles View -->
+                <section id="profiles-view" class="view">
+                    <div class="view-header">
+                        <h2>My Career Profiles</h2>
+                        <button class="btn btn-primary" id="add-profile-btn">+ New Profile</button>
+                    </div>
+                    
+                    <div id="profiles-list" class="profiles-grid">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </section>
+                
+                <!-- Progress View -->
+                <section id="progress-view" class="view">
+                    <div class="view-header">
+                        <h2>Your Progress</h2>
+                    </div>
+                    
+                    <div id="progress-content">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </section>
+                
+                <!-- Analytics View -->
+                <section id="analytics-view" class="view">
+                    <div class="view-header">
+                        <h2>Career Analytics</h2>
+                    </div>
+                    
+                    <div class="analytics-container">
+                        <div class="chart-card">
+                            <h3>Skills Distribution</h3>
+                            <canvas id="skillsChart"></canvas>
+                        </div>
+                        <div class="chart-card">
+                            <h3>Progress Over Time</h3>
+                            <canvas id="progressChart"></canvas>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Settings View -->
+                <section id="settings-view" class="view">
+                    <div class="view-header">
+                        <h2>Settings</h2>
+                    </div>
+                    
+                    <div class="settings-container">
+                        <div class="setting-group">
+                            <h3>Appearance</h3>
+                            <label class="setting-item">
+                                <input type="checkbox" id="dark-mode" checked>
+                                <span>Dark Mode</span>
+                            </label>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <h3>Data Management</h3>
+                            <button class="btn btn-secondary" id="export-all-btn">
+                                📥 Export All Profiles
+                            </button>
+                            <button class="btn btn-secondary" id="import-btn">
+                                📤 Import Profiles
+                            </button>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <h3>Danger Zone</h3>
+                            <button class="btn btn-danger" id="reset-btn">
+                                🗑️ Reset All Data
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Profile Detail Modal -->
+    <div id="profile-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Profile Details</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

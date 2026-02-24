@@ -1,0 +1,12 @@
+# docker-compose.yml for Streamlit Career Assistant Platform
+version: '3.8'
+services:
+  streamlit-app:
+    build: .
+    ports:
+      - "8501:8501"
+    environment:
+      - HF_API_KEY=${HF_API_KEY}
+    volumes:
+      - .:/app
+    restart: unless-stopped

@@ -1,0 +1,215 @@
+/* NeuralChat Styling for Streamlit - Enhanced Contrast */
+
+:root {
+  --bg-from: #0f0a1f;
+  --bg-mid: #1a0f33;
+  --bg-to: #0f1629;
+  --accent: #00d4ff;
+  --accent-glow: rgba(0, 212, 255, 0.35);
+  --accent2: #a855f7;
+  --accent2-glow: rgba(168, 85, 247, 0.35);
+  --text-main: #f0f4f8;
+  --text-secondary: #d1d5db;
+}
+
+/* Main background - lighter */
+[data-testid="stAppViewContainer"] {
+  background: linear-gradient(135deg, var(--bg-from) 0%, var(--bg-mid) 50%, var(--bg-to) 100%) !important;
+  color: var(--text-main) !important;
+}
+
+[data-testid="stMainBlockContainer"] {
+  background: transparent !important;
+}
+
+[data-testid="stMain"] {
+  background: transparent !important;
+}
+
+/* Sidebar styling - lighter background */
+[data-testid="stSidebar"] {
+  background: rgba(20, 10, 40, 0.6) !important;
+  backdrop-filter: blur(24px) !important;
+  border-right: 1px solid rgba(0, 212, 255, 0.15) !important;
+}
+
+[data-testid="stSidebar"] [data-testid="stVerticalBlock"] {
+  gap: 8px;
+}
+
+/* Text color - bright and clear */
+.stMarkdown, p, label, span, div {
+  color: var(--text-main) !important;
+}
+
+/* Headers - brighter gradient */
+h1, h2, h3, h4, h5, h6 {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+/* Buttons - bright with good contrast */
+.stButton > button {
+  background: linear-gradient(135deg, #00f0ff 0%, #0099ff 100%) !important;
+  color: #000814 !important;
+  border: none !important;
+  border-radius: 12px !important;
+  padding: 12px 24px !important;
+  font-weight: 700 !important;
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.5) !important;
+  transition: all 0.3s ease !important;
+  font-size: 0.95rem !important;
+}
+
+.stButton > button:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.7) !important;
+}
+
+/* Input fields - better contrast */
+.stTextInput > div > div > input,
+.stTextArea > div > div > textarea,
+.stSelectbox > div > div > select {
+  background: rgba(50, 50, 80, 0.8) !important;
+  color: #ffffff !important;
+  border: 1.5px solid rgba(0, 212, 255, 0.4) !important;
+  border-radius: 10px !important;
+  padding: 12px 14px !important;
+  font-size: 0.95rem !important;
+}
+
+.stTextInput > div > div > input::placeholder,
+.stTextArea > div > div > textarea::placeholder {
+  color: rgba(220, 220, 230, 0.5) !important;
+}
+
+/* Selectbox styling */
+.stSelectbox > div > div > div {
+  background: rgba(50, 50, 80, 0.8) !important;
+  border: 1.5px solid rgba(0, 212, 255, 0.4) !important;
+  border-radius: 10px !important;
+  color: #ffffff !important;
+}
+
+/* Message/content containers - improved contrast */
+[data-testid="stMarkdownContainer"] {
+  background: rgba(30, 20, 50, 0.7) !important;
+  border: 1px solid rgba(0, 212, 255, 0.3) !important;
+  border-radius: 14px !important;
+  padding: 18px !important;
+  margin: 14px 0 !important;
+  backdrop-filter: blur(10px) !important;
+  color: var(--text-main) !important;
+}
+
+[data-testid="stSuccess"] {
+  background: rgba(16, 185, 129, 0.15) !important;
+  border: 1.5px solid rgba(16, 185, 129, 0.5) !important;
+  border-radius: 12px !important;
+  color: #10ffb9 !important;
+}
+
+[data-testid="stInfo"] {
+  background: rgba(0, 212, 255, 0.15) !important;
+  border: 1.5px solid rgba(0, 212, 255, 0.5) !important;
+  border-radius: 12px !important;
+  color: #00ffff !important;
+}
+
+[data-testid="stWarning"] {
+  background: rgba(251, 191, 36, 0.15) !important;
+  border: 1.5px solid rgba(251, 191, 36, 0.5) !important;
+  border-radius: 12px !important;
+  color: #ffd700 !important;
+}
+
+/* Error messages */
+[data-testid="stAlert"] {
+  color: #ff6b6b !important;
+}
+
+/* Tabs - better contrast */
+.stTabs > div > div {
+  gap: 10px;
+}
+
+.stTabs > div > div > button {
+  background: transparent !important;
+  color: rgba(200, 200, 220, 0.9) !important;
+  border: none !important;
+  border-bottom: 2px solid transparent !important;
+  transition: all 0.2s !important;
+  font-weight: 600 !important;
+}
+
+.stTabs > div > div > button[aria-selected="true"] {
+  color: #00ffff !important;
+  border-bottom-color: #00ffff !important;
+}
+
+/* Column divider */
+.stHorizontal > div > div {
+  gap: 16px;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 212, 255, 0.4);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 212, 255, 0.6);
+}
+
+/* Spinner/loader */
+[data-testid="stSpinner"] {
+  color: #00ffff !important;
+}
+
+/* Focus states */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none !important;
+  border-color: #00ffff !important;
+  box-shadow: 0 0 16px rgba(0, 255, 255, 0.5) !important;
+  background: rgba(50, 50, 80, 0.95) !important;
+}
+
+/* Divider */
+hr {
+  border-color: rgba(0, 212, 255, 0.2) !important;
+  margin: 20px 0 !important;
+}
+
+/* Code blocks */
+code, pre {
+  background: rgba(20, 20, 40, 0.9) !important;
+  color: #00ffff !important;
+  border: 1px solid rgba(0, 212, 255, 0.2) !important;
+  padding: 12px !important;
+  border-radius: 8px !important;
+}
+
+/* Links */
+a {
+  color: #00d4ff !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+}
+
+a:hover {
+  color: #00ffff !important;
+  text-decoration: underline !important;
+}
+
